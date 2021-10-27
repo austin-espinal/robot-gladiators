@@ -3,10 +3,7 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-// You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth);
-
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
@@ -18,41 +15,42 @@ var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle");
 if (promptFight === "fight" || promptFight === "FIGHT") {
   //remove enemy's health by subtracting the amount set in the playerAttack
   enemyHealth = enemyHealth - playerAttack;
-  console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
-
-// check enemy's health
-if (enemyHealth <= 0) {
-  window.alert(enemyName + " has died!");
-} else {
-  window.alert(enemyName + " still has " + enemyHealth + " health left.");
-}
+  console.log(playerName + " attacked " + enemyNames[i] + ". " + enemyNames[i] + " now has " + enemyHealth + " health remaining.");
+  // check enemy's health
+  if (enemyHealth <= 0) {
+    window.alert(enemyNames[i] + " has died!");
+  } else {
+    window.alert(enemyNames[i] + " still has " + enemyHealth + " health left.");
+  }
 
 // remove player's health by subtracting the amount set in the enemyAttack variable
- playerHealth = playerHealth - enemyAttack;
-console.log(
-  enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-);
+   playerHealth = playerHealth - enemyAttack;
+   console.log(
+    enemyNames[i] + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    );
 
 // check player's health
-if (playerHealth <= 0) {
-  window.alert(playerName + " has died!");
-} else {
-  window.alert(playerName + " still has " + playerHealth + " health left.");
-}
+   if (playerHealth <= 0) {
+     window.alert(playerName + " has died!");
+   } else {
+    window.alert(playerName + " still has " + playerHealth + " health left.");
+   }
 // if player choses to skip
-} else if (promptFight === "skip" || promptFight === "SKIP") {
+    } else if (promptFight === "skip" || promptFight === "SKIP") {
 //confirm player wants to skip
-var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-if (confirmSkip) {
-  window.alert(playerName + " has decided to skip this fight. Good bye!");
-  playerMoney = playerMoney - 2;
+   var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+   if (confirmSkip) {
+    window.alert(playerName + " has decided to skip this fight. Good bye!");
+    playerMoney = playerMoney - 2;
+  }
+  else {
+     fight();
+  }
+  } else {
+  window.alert("You need to choose a valid option. Try again!");
+  }
 }
-else {
-  fight();
-}
-} else {
-window.alert("You need to choose a valid option. Try again!");
-}
-};
 
-fight();
+for(var i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i]);
+}
